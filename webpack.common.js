@@ -1,18 +1,17 @@
-// webpack.common.js
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const isProd = process.env.NODE_ENV === 'production';
 
-module.exports = {
+export default {
   entry: './src/index.js',
   output: {
-    filename: 'index.js', // <-- matches package.json "main": "dist/index.js"
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js', // matches package.json "main": "dist/index.js"
+    path: path.resolve(process.cwd(), 'dist'),
     clean: true,
     library: {
-      name: 'DropdownMenu', // UMD global name if used via <script>
+      name: 'DropdownMenu',
       type: 'umd',
       export: 'default',
     },
@@ -21,7 +20,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/template.html',
     }),
-    // Extract CSS only for production builds
     ...(isProd ? [new MiniCssExtractPlugin({ filename: 'styles.css' })] : []),
   ],
   module: {
@@ -29,7 +27,6 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          // Use MiniCssExtractPlugin loader in production, otherwise style-loader (dev)
           isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
         ],
@@ -42,7 +39,7 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/[name][ext]', // keep images in dist/assets/
+          filename: 'assets/[name][ext]',
         },
       },
     ],
