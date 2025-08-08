@@ -1,4 +1,5 @@
-import menuIcon from './dropdown-menu.png'; // Webpack will handle this
+import './styles.css';
+import menuIcon from './dropdown-menu.png';
 
 export class ImageDropdown {
   constructor({ containerId, items = [] }) {

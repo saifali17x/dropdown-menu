@@ -27,7 +27,6 @@ Perfect for adding quick action menus to your web projects.
 ```bash
 npm install @saifali17x/dropdown-menu
 ```
-````
 
 ---
 
@@ -35,54 +34,61 @@ npm install @saifali17x/dropdown-menu
 
 **1. Import styles and script**
 
-If you’re using a bundler (Webpack, Vite, etc.):
+If you're using a bundler (Webpack, Vite, etc.):
 
 ```js
-import '@saifali17x/dropdown-menu/styles.css';
-import '@saifali17x/dropdown-menu';
+import '@saifali17x/dropdown-menu/dist/styles.css';
+import { ImageDropdown } from '@saifali17x/dropdown-menu';
 ```
 
-If you’re using plain HTML:
+If you're using plain HTML:
 
 ```html
 <link
   rel="stylesheet"
-  href="./node_modules/@saifali17x/dropdown-menu/styles.css"
+  href="./node_modules/@saifali17x/dropdown-menu/dist/styles.css"
 />
-<script src="./node_modules/@saifali17x/dropdown-menu/index.js" defer></script>
+<script
+  src="./node_modules/@saifali17x/dropdown-menu/dist/index.js"
+  defer
+></script>
 ```
 
 ---
 
-**2. Add the HTML**
+**2. Add a container element**
 
 ```html
-<img
-  src="./node_modules/@saifali17x/dropdown-menu/assets/dropdown-menu.png"
-  alt="menu"
-  id="dropdown-button"
-  width="35"
-/>
-
-<div id="menu">
-  <a id="darkmode" href="#">Toggle darkmode</a>
-  <hr />
-  <a href="https://github.com/saifali17x">Source Code</a>
-  <hr />
-  <a>Account</a>
-  <hr />
-  <a>More coming soon...</a>
-</div>
+<div id="dropdown-container"></div>
 ```
 
 ---
 
-**3. Optional: Custom Styling**
+**3. Initialize the dropdown**
 
-You can override `#menu` and `#dropdown-button` styles in your own CSS file:
+```js
+const dropdown = new ImageDropdown({
+  containerId: 'dropdown-container',
+  items: [
+    { label: 'Toggle darkmode', onClick: () => alert('Darkmode toggled!') },
+    { type: 'divider' },
+    { label: 'Source Code', href: 'https://github.com/saifali17x' },
+    { type: 'divider' },
+    { label: 'Account', onClick: () => alert('Account clicked!') },
+    { type: 'divider' },
+    { label: 'More coming soon...' },
+  ],
+});
+```
+
+---
+
+**4. Optional: Custom Styling**
+
+You can override the dropdown styles in your own CSS file:
 
 ```css
-#menu {
+.dropdown-menu {
   background: #222;
   color: #fff;
   border-radius: 5px;
@@ -112,7 +118,7 @@ src/
 ## 🤝 Contributing
 
 Pull requests are welcome!
-For major changes, please open an issue first to discuss what you’d like to change.
+For major changes, please open an issue first to discuss what you'd like to change.
 
 ---
 
@@ -123,3 +129,4 @@ For major changes, please open an issue first to discuss what you’d like to ch
 ```
 
 ```
+````
