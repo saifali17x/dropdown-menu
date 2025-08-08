@@ -13,7 +13,7 @@ export default {
     library: {
       name: 'DropdownMenu',
       type: 'umd',
-      export: 'default',
+      export: 'named',
     },
   },
   plugins: [
